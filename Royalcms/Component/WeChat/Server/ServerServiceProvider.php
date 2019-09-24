@@ -22,7 +22,7 @@ class ServerServiceProvider extends ServiceProvider
     {
         $wechat = $this->royalcms['wechat'];
         
-        $wechat->bindShared('encryptor', function($wechat)
+        $wechat->singleton('encryptor', function($wechat)
         {
             return new Encryptor(
                 $wechat['config']['app_id'],
@@ -31,7 +31,7 @@ class ServerServiceProvider extends ServiceProvider
             );
         });
         
-        $wechat->bindShared('server', function($wechat)
+        $wechat->singleton('server', function($wechat)
         {
             $server = new Guard($wechat['config']['token']);
 
